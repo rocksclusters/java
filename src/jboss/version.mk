@@ -1,0 +1,3 @@
+NAME    = jboss
+VERSION = 4.2.1.GA
+RELEASE = 0

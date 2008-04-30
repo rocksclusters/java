@@ -1,0 +1,146 @@
+#!/bin/bash
+#
+# Startup file for jboss instance
+#
+# Usage: script_name instance-name {start|stop|restart}
+#
+
+INSTANCE=$1
+
+. /etc/rc.d/init.d/functions
+. /etc/profile.d/java.sh
+. /etc/profile.d/jboss.sh
+
+#########   start confiuration edits  ###############################
+JBOSSBASE="/opt/jboss"
+JBOSSBIN="$JBOSSBASE/bin"
+JBOSSHOME="$JBOSSBASE/server"
+JBOSSLOGBASE="$JBOSSBASE/LOGS"
+JBOSSLOGDIR="$JBOSSLOGBASE/$INSTANCE"
+JBOSSINSTANCELOGS=$JBOSSLOGDIR/log
+JAVA_OPTS_MEMORY="-Xms512m -Xmx1024m -XX:MaxPermSize=128m"
+JAVA_OPTS_VM="-server"
+JAVA_OPTS_CONFIG="-Djboss.server.home.dir=$JBOSSLOGDIR -Djboss.server.temp.dir=$JBOSSLOGDIR/tmp -Djava.awt.headless=true"
+JAVA_OPTS_DEBUG="" #overridden below if necessary
+DEBUG_PORT="8787"
+LOCKFILE="$JBOSSLOGDIR/lock"
+#########    end confiuration edits   ###############################
+
+USAGE="Usage: $0 instance-name {start|start-debug|stop|restart|status|logs|show-log}"
+
+if [ ! -d $JBOSSHOME/$INSTANCE ]; then
+	echo "Invalid jboss instance name: $INSTANCE in $JBOSSHOME"
+        echo $USAGE
+	exit 1
+fi
+
+if [ ! -d $JBOSSLOGBASE ]; then
+	mkdir -p $JBOSSLOGBASE
+	chmod 1777 $JBOSSLOGBASE
+fi
+
+
+if [ ! -d $JBOSSLOGDIR ]; then
+	mkdir -p $JBOSSLOGDIR
+	mkdir -p $JBOSSINSTANCELOGS
+	mkdir -p $JBOSSLOGDIR/tmp
+	chmod 775 $JBOSSLOGDIR	
+fi
+
+if [ ! -f $JBOSSLOGDIR/jboss ]; then
+	ln -s $JBOSSBASE/jboss $JBOSSLOGDIR/jboss
+fi
+
+if [ ! -d $JBOSSLOGDIR ]; then
+	echo "Unable to create JBoss log directory: $JBOSSLOGDIR"
+	echo "exiting without starting"
+	exit 1
+fi
+
+DATE=`date +%Y%m%d%H%M`
+LOGFILE="JBoss-log.out"
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/X11R6/bin
+
+export JAVA_HOME LD_LIBRARY_PATH PATH 
+
+start() {
+    JAVA_OPTS=$JAVA_OPTS_MEMORY" "$JAVA_OPTS_VM" "$JAVA_OPTS_DEBUG" "$JAVA_OPTS_CONFIG
+    export JAVA_OPTS
+    if [ -f $LOCKFILE ] ; then
+        echo "JBoss instance $INSTANCE already running or lock file error"
+        exit 1
+    elif touch $LOCKFILE ; then
+        chmod 600 $LOCKFILE
+    else
+        echo "Write Permission denied!"
+        exit 1
+    fi
+    cd $JBOSSINSTANCELOGS
+    if [ -f $LOGFILE ]; then
+        mv $LOGFILE "${LOGFILE}.${DATE}"
+        mv server.log server.log.$DATE
+    fi
+    $JBOSSBIN/run.sh -c $INSTANCE -b 0.0.0.0 2> $LOGFILE 1>&2 &
+}
+
+stop() {
+    if [ -f $LOCKFILE ]; then	
+	    cd $JBOSSINSTANCELOGS
+	    $JBOSSBIN/shutdown.sh -S
+	    rm -f $LOCKFILE
+    else
+	echo "$LOCKFILE not found.  Is JBoss instance $INSTANCE running?"
+    fi
+}
+
+
+case "$2" in
+    start)
+        echo "Starting JBoss Instance: $INSTANCE"
+        start
+        ;;
+
+    start-debug)
+	JAVA_OPTS_DEBUG="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=$DEBUG_PORT"	
+	JAVA_OPTS_VM="-client"
+	echo "Starting JBoss Instance: $INSTANCE with debug port listening at $HOSTNAME:$DEBUG_PORT"
+	start
+	;;
+
+    stop)
+        echo "Stopping JBoss Instance: $INSTANCE"
+        stop
+        ;;
+
+    status)
+	if [ -f $LOCKFILE ] ; then
+       		echo "JBoss instance $INSTANCE running or lock file error"
+		status run.sh
+	else 	
+		echo "JBoss instance $INSTANCE not found"
+	fi
+	;;
+
+    logs)
+	echo "Logs for $INSTANCE located in $JBOSSINSTANCELOGS"	
+	;;
+
+    show-log)
+	tail -f $JBOSSINSTANCELOGS/server.log
+	;;
+
+    restart)
+	echo "Please be patient, restart may take a while"
+        stop
+	sleep 15
+        start
+        ;;
+
+    *)
+        echo $USAGE
+        exit 1
+
+esac
+
+exit 0
+

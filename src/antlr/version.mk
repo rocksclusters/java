@@ -1,0 +1,3 @@
+NAME = antlr
+RELEASE = 0
+VERSION = 3.0

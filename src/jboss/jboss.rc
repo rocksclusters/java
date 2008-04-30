@@ -1,0 +1,73 @@
+#!/bin/bash
+#
+# jboss         Starts JBoss server
+#
+#
+# chkconfig: 35 98 01
+# description: JBoss server start/stop
+#
+### BEGIN INIT INFO
+# Provides:       jboss
+# processname:    jboss
+# Default-Start:  3 5
+# Default-Stop:   0 1 2 6
+# pidfile: /var/run/jboss.pid
+### END INIT INFO
+
+# Source function library.
+. /etc/init.d/functions
+
+# Source init scripts
+. /etc/profile.d/java.sh
+. /etc/profile.d/sge-binaries.sh
+. /etc/profile.d/jboss.sh
+
+PROG="jboss"
+INSTANCE="default"
+
+if [ -x /etc/sysconfig/jboss/config ]; then
+        . /etc/sysconfig/jboss/config
+fi
+
+start() {
+    ulimit -HSn 8192
+    if [ -x /etc/sysconfig/jboss/start.sh ]; then
+	su $JBOSS_USER -c /etc/sysconfig/jboss/start.sh $INSTANCE
+    else
+	su $JBOSS_USER -c "$JBOSS_HOME/jboss $INSTANCE start" 
+    fi
+    touch /var/run/jboss.pid
+    touch /var/lock/subsys/jboss
+    echo
+}
+
+stop() {
+    if [ -x /etc/sysconfig/jboss/stop.sh ]; then
+	su $JBOSS_USER -c /etc/sysconfig/jboss/stop.sh $INSTANCE
+    else
+	su $JBOSS_USER -c "$JBOSS_HOME/jboss $INSTANCE stop" 
+    fi
+    rm -f /var/run/jboss.pid
+    rm -f /var/lock/subsys/jboss
+    sleep 3
+    echo
+}
+
+case "$1" in
+	start)
+	    start
+	    ;;
+	stop)
+	    stop
+	    ;;
+	restart)
+	    stop
+	    start
+	    ;;
+	*)
+	    echo $"Usage: $0 {start|stop|restart}"
+	    exit 1
+
+esac
+
+exit 0
