@@ -16,6 +16,9 @@
 
 	<changelog>
 	$Log: java.xml,v $
+	Revision 1.13  2008/05/30 20:58:07  mjk
+	client fix
+	
 	Revision 1.12  2008/03/06 23:41:54  mjk
 	copyright storm on
 	
@@ -59,7 +62,7 @@
 	</changelog>
 
 	<edge from="server" to="java-server"/>
-	<edge from="clent"  to="java-client"/>
+	<edge from="client" to="java-client"/>
 	<edge from="base"   to="java-base"/>
 
 </graph>
