@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.10 2008/03/06 23:41:55 mjk Exp $
+# $Id: Makefile,v 1.11 2008/08/29 18:22:57 mjk Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.11  2008/08/29 18:22:57  mjk
+# can build outside of tree
+#
 # Revision 1.10  2008/03/06 23:41:55  mjk
 # copyright storm on
 #
@@ -89,7 +92,6 @@
 PKGROOT = /opt/tomcat
 
 REDHAT.ROOT = $(PWD)/../../
-ROCKSROOT = ../../../../..
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 

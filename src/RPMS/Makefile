@@ -1,5 +1,5 @@
 # --------------------------------------------------- -*- Makefile -*- --
-# $Id: Makefile,v 1.8 2008/03/06 23:41:54 mjk Exp $
+# $Id: Makefile,v 1.9 2008/08/29 18:22:56 mjk Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.9  2008/08/29 18:22:56  mjk
+# can build outside of tree
+#
 # Revision 1.8  2008/03/06 23:41:54  mjk
 # copyright storm on
 #
@@ -81,7 +84,6 @@
 #
 
 REDHAT.ROOT	= $(PWD)/../../
-ROCKSROOT	= ../../../../..
 MAKE.iscontrib	= 1
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
