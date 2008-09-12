@@ -1,0 +1,15 @@
+#
+# $Id: java.csh.sunos,v 1.1 2008/09/12 19:04:12 anoop Exp $
+#
+# @Copyright@
+# @Copyright@
+#
+#
+# $Log: java.csh.sunos,v $
+# Revision 1.1  2008/09/12 19:04:12  anoop
+# Made the java roll more solaris friendly
+#
+
+setenv JAVA_HOME  /usr/java
+set path = ( $JAVA_HOME/bin $path)
+

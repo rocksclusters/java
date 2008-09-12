@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.9 2008/08/29 18:22:56 mjk Exp $
+# $Id: Makefile,v 1.10 2008/09/12 19:04:12 anoop Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.10  2008/09/12 19:04:12  anoop
+# Made the java roll more solaris friendly
+#
 # Revision 1.9  2008/08/29 18:22:56  mjk
 # can build outside of tree
 #
@@ -83,7 +86,7 @@
 # java for hpc
 #
 
-
+ROLLSROOT	= ..
 -include $(ROLLSROOT)/etc/Rolls.mk
 include Rolls.mk
 

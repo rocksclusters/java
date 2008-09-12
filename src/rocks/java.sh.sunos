@@ -1,0 +1,14 @@
+#
+# $Id: java.sh.sunos,v 1.1 2008/09/12 19:04:12 anoop Exp $
+#
+# @Copyright@
+# @Copyright@
+#
+#
+# $Log: java.sh.sunos,v $
+# Revision 1.1  2008/09/12 19:04:12  anoop
+# Made the java roll more solaris friendly
+#
+
+export JAVA_HOME=/usr/java
+export PATH=$JAVA_HOME/bin:$PATH

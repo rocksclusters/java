@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.3 2008/08/29 18:22:56 mjk Exp $
+# $Id: Makefile,v 1.4 2008/09/12 19:04:12 anoop Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.4  2008/09/12 19:04:12  anoop
+# Made the java roll more solaris friendly
+#
 # Revision 1.3  2008/08/29 18:22:56  mjk
 # can build outside of tree
 #
@@ -80,18 +83,15 @@
 # various java-based tools
 #
 
-REDHAT.ROOT	= $(PWD)/../../
+REDHAT.ROOT	= $(CURDIR)/../../
+ROCKSROOT	= ../../../../..
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
--include ../../java-version.mk
+-include $(REDHAT.ROOT)/java-version.mk
 include java-version.mk
 
-install::
-	mkdir -p $(ROOT)/$(JAVA_LIBEXT)
-	install -m444 $(NAME)-$(VERSION)/lib/*.jar $(ROOT)/$(JAVA_LIBEXT)/
-
 build: 
-	tar -xzf $(NAME)-$(VERSION).tar.gz
+	gunzip -c $(NAME)-$(VERSION).tar.gz | $(TAR) -xf -
 
 clean::
 	rm -rf $(NAME)-$(VERSION)

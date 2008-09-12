@@ -1,4 +1,4 @@
-# $Id: java-version.mk,v 1.3 2008/03/06 23:41:54 mjk Exp $
+# $Id: java-version.mk,v 1.4 2008/09/12 19:04:12 anoop Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: java-version.mk,v $
+# Revision 1.4  2008/09/12 19:04:12  anoop
+# Made the java roll more solaris friendly
+#
 # Revision 1.3  2008/03/06 23:41:54  mjk
 # copyright storm on
 #
@@ -68,8 +71,15 @@ ifndef __JAVA_VERSION_MK
 __JAVA_VERSION_MK = yes
 
 
+ifdef __RULES_LINUX_MK
 JAVA_VERSION	= 1.5.0_10
 JAVA_HOME	= /usr/java/jdk$(JAVA_VERSION)
+endif
+
+ifdef __RULES_SUNOS_MK
+JAVA_VERSION	= 1.6.0_07
+JAVA_HOME	= /usr/jdk/instances/jdk1.6.0
+endif
 
 ifeq ($(ARCH),x86_64)
 JAVA_ARCH	= amd64

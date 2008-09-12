@@ -1,5 +1,5 @@
 # --------------------------------------------------- -*- Makefile -*- --
-# $Id: Makefile,v 1.13 2008/08/29 18:22:36 mjk Exp $
+# $Id: Makefile,v 1.14 2008/09/12 19:04:12 anoop Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.14  2008/09/12 19:04:12  anoop
+# Made the java roll more solaris friendly
+#
 # Revision 1.13  2008/08/29 18:22:36  mjk
 # can build outside of tree
 #
@@ -99,9 +102,8 @@
 # only install the SDK
 #
 
-
-PKGROOT = 
-REDHAT.ROOT = $(PWD)/../../
+REDHAT.ROOT = $(CURDIR)/../../
+ROCKSROOT	= ../../../../..
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 
@@ -109,9 +111,8 @@ build:
 
 install::
 	mkdir -p $(ROOT)/etc/profile.d
-	install -m755  java.sh  $(ROOT)/etc/profile.d/
-	install -m755  java.csh $(ROOT)/etc/profile.d/
+	$(INSTALL) -m755  java.sh.$(OS)  $(ROOT)/etc/profile.d/java.sh
+	$(INSTALL) -m755  java.csh.$(OS) $(ROOT)/etc/profile.d/java.csh
 
 clean::
 	rm -f $(NAME).spec.in
-

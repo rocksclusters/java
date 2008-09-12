@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.9 2008/03/06 23:41:54 mjk Exp $
+# $Id: Makefile,v 1.10 2008/09/12 19:04:12 anoop Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.10  2008/09/12 19:04:12  anoop
+# Made the java roll more solaris friendly
+#
 # Revision 1.9  2008/03/06 23:41:54  mjk
 # copyright storm on
 #
@@ -84,11 +87,12 @@
 #
 
 
-SRCDIRS = `find . -type d -maxdepth 1 -not -name CVS -not -name . | fgrep -v cruisecontrol`
+-include $(shell ../../../../bin/arch).mk
+-include $(shell ../../../../bin/os).mk
 
-default:	rpm
+default:	pkg
 
-copyright rpm clean::
+copyright pkg rpm clean::
 	for i in $(SRCDIRS) ; do \
-		(cd $$i; make $@) ; \
+		(cd $$i; $(MAKE) $@) ; \
 	done

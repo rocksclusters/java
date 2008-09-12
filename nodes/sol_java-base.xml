@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="no"?>
+
+<kickstart>
+
+
+	<description>
+	SUN Java Language SDK
+	</description>
+
+	<copyright>
+	Copyright (c) 2000 - 2008 The Regents of the University of California.
+	All rights reserved. Rocks(r) v5.0 www.rocksclusters.org
+	</copyright>
+
+	<changelog>
+	$Log: sol_java-base.xml,v $
+	Revision 1.1  2008/09/12 19:04:12  anoop
+	Made the java roll more solaris friendly
+	
+	
+	</changelog>
+
+	<package>SUNWj6cfg</package>
+	<package>SUNWj6dev</package>
+	<package>SUNWj6dvx</package>
+	<package>SUNWj6man</package>
+	<package>SUNWj6rt</package>
+	<package>SUNWj6rtx</package>
+	<package>SUNWjavadb-client</package>
+	<package>SUNWjavadb-common</package>
+	<package>SUNWjavadb-core</package>
+	<package>ROCKSantlr</package>
+	<package>ROCKSrocks-java</package>
+	<package>ROCKSjboss</package>
+
+
+<post>
+
+/usr/sbin/groupadd -g405 jboss
+/usr/sbin/useradd -u405 -c "JBoss" \
+	-g jboss -d /opt/jboss jboss
+
+chown -R jboss:jboss /opt/jboss
+
+</post>
+</kickstart>

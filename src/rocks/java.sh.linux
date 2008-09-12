@@ -1,5 +1,5 @@
 #
-# $Id: java.csh,v 1.6 2008/03/06 23:41:55 mjk Exp $
+# $Id: java.sh.linux,v 1.1 2008/09/12 19:04:12 anoop Exp $
 #
 # @Copyright@
 # 
@@ -55,7 +55,10 @@
 # @Copyright@
 #
 #
-# $Log: java.csh,v $
+# $Log: java.sh.linux,v $
+# Revision 1.1  2008/09/12 19:04:12  anoop
+# Made the java roll more solaris friendly
+#
 # Revision 1.6  2008/03/06 23:41:55  mjk
 # copyright storm on
 #
@@ -122,6 +125,6 @@
 # java version differs by arch
 #
 
-setenv JAVA_HOME  /usr/java/jdk1.5.0_10
-set path = ( $JAVA_HOME/bin $path)
+export JAVA_HOME=/usr/java/jdk1.5.0_10
+export PATH=$JAVA_HOME/bin:$PATH
 
