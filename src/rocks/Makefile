@@ -1,5 +1,5 @@
 # --------------------------------------------------- -*- Makefile -*- --
-# $Id: Makefile,v 1.14 2008/09/12 19:04:12 anoop Exp $
+# $Id: Makefile,v 1.15 2008/09/12 19:31:34 anoop Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.15  2008/09/12 19:31:34  anoop
+# Bug fixes to re-enable building outside the tree.
+#
 # Revision 1.14  2008/09/12 19:04:12  anoop
 # Made the java roll more solaris friendly
 #
@@ -103,7 +106,6 @@
 #
 
 REDHAT.ROOT = $(CURDIR)/../../
-ROCKSROOT	= ../../../../..
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 
