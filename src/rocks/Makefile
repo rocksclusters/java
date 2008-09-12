@@ -1,5 +1,5 @@
 # --------------------------------------------------- -*- Makefile -*- --
-# $Id: Makefile,v 1.15 2008/09/12 19:31:34 anoop Exp $
+# $Id: Makefile,v 1.16 2008/09/12 22:21:55 mjk Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,10 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.16  2008/09/12 22:21:55  mjk
+# JDK6 (linux) added /usr/java/latest.  Start using this instead of the
+# versioned name so we can never do this again.
+#
 # Revision 1.15  2008/09/12 19:31:34  anoop
 # Bug fixes to re-enable building outside the tree.
 #
@@ -116,5 +120,3 @@ install::
 	$(INSTALL) -m755  java.sh.$(OS)  $(ROOT)/etc/profile.d/java.sh
 	$(INSTALL) -m755  java.csh.$(OS) $(ROOT)/etc/profile.d/java.csh
 
-clean::
-	rm -f $(NAME).spec.in

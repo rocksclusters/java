@@ -1,5 +1,5 @@
 #
-# $Id: java.csh.linux,v 1.1 2008/09/12 19:04:12 anoop Exp $
+# $Id: java.csh.linux,v 1.2 2008/09/12 22:21:55 mjk Exp $
 #
 # @Copyright@
 # 
@@ -56,6 +56,10 @@
 #
 #
 # $Log: java.csh.linux,v $
+# Revision 1.2  2008/09/12 22:21:55  mjk
+# JDK6 (linux) added /usr/java/latest.  Start using this instead of the
+# versioned name so we can never do this again.
+#
 # Revision 1.1  2008/09/12 19:04:12  anoop
 # Made the java roll more solaris friendly
 #
@@ -125,6 +129,6 @@
 # java version differs by arch
 #
 
-setenv JAVA_HOME  /usr/java/jdk1.5.0_10
+setenv JAVA_HOME  /usr/java/latest
 set path = ( $JAVA_HOME/bin $path)
 
