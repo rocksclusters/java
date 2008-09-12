@@ -1,4 +1,4 @@
-# $Id: java-version.mk,v 1.4 2008/09/12 19:04:12 anoop Exp $
+# $Id: java-version.mk,v 1.5 2008/09/12 22:29:31 mjk Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,12 @@
 # @Copyright@
 #
 # $Log: java-version.mk,v $
+# Revision 1.5  2008/09/12 22:29:31  mjk
+# - Bootstrap works outside of Rocks tree (typo also fixed)
+# - JDK1.5 replaced with JDK6
+# - javadb included but not installed (came with jdk.rpm.bin from sun)
+# - x86_64 install 32 JDK also
+#
 # Revision 1.4  2008/09/12 19:04:12  anoop
 # Made the java roll more solaris friendly
 #
@@ -72,7 +78,7 @@ __JAVA_VERSION_MK = yes
 
 
 ifdef __RULES_LINUX_MK
-JAVA_VERSION	= 1.5.0_10
+JAVA_VERSION	= 1.6.0_07
 JAVA_HOME	= /usr/java/jdk$(JAVA_VERSION)
 endif
 

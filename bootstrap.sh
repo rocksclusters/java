@@ -2,7 +2,7 @@
 #
 # This file should remain OS independent
 #
-# $Id: bootstrap.sh,v 1.2 2008/03/06 23:41:54 mjk Exp $
+# $Id: bootstrap.sh,v 1.3 2008/09/12 22:29:31 mjk Exp $
 #
 # @Copyright@
 # 
@@ -58,6 +58,12 @@
 # @Copyright@
 #
 # $Log: bootstrap.sh,v $
+# Revision 1.3  2008/09/12 22:29:31  mjk
+# - Bootstrap works outside of Rocks tree (typo also fixed)
+# - JDK1.5 replaced with JDK6
+# - javadb included but not installed (came with jdk.rpm.bin from sun)
+# - x86_64 install 32 JDK also
+#
 # Revision 1.2  2008/03/06 23:41:54  mjk
 # copyright storm on
 #
@@ -66,11 +72,11 @@
 # - added bootstrap.sh
 #
 
-. ../etc/bootstrap-functions.sh
+. $ROLLSROOT/etc/bootstrap-functions.sh
 
 install_os_packages java-server
 
 compile RPMS
 install jdk
 
-compute_and_install antlr
+compile_and_install antlr
