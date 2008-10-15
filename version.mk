@@ -1,3 +1,4 @@
+ROLLNAME = java
 RELEASE = 0
 COLOR = tan
 
