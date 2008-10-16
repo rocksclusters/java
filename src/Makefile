@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.10 2008/09/12 19:04:12 anoop Exp $
+# $Id: Makefile,v 1.11 2008/10/16 21:31:14 mjk Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,10 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.11  2008/10/16 21:31:14  mjk
+# - removed cruisecontrol (does not build)
+# - fixed path to os/arch build utils
+#
 # Revision 1.10  2008/09/12 19:04:12  anoop
 # Made the java roll more solaris friendly
 #
@@ -87,8 +91,8 @@
 #
 
 
--include $(shell ../../../../bin/arch).mk
--include $(shell ../../../../bin/os).mk
+-include $(shell $(ROCKSROOT)/bin/arch).mk
+-include $(shell $(ROCKSROOT)/bin/os).mk
 
 default:	pkg
 
