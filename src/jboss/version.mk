@@ -1,3 +1,3 @@
 NAME    = jboss
-VERSION = 4.2.1.GA
+VERSION = 4.2.3.GA
 RELEASE = 0

@@ -1,5 +1,5 @@
 # --------------------------------------------------- -*- Makefile -*- --
-# $Id: Makefile,v 1.17 2008/10/18 00:56:12 mjk Exp $
+# $Id: Makefile,v 1.18 2008/11/30 19:38:40 anoop Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.18  2008/11/30 19:38:40  anoop
+# *** empty log message ***
+#
 # Revision 1.17  2008/10/18 00:56:12  mjk
 # copyright 5.1
 #
@@ -123,3 +126,5 @@ install::
 	$(INSTALL) -m755  java.sh.$(OS)  $(ROOT)/etc/profile.d/java.sh
 	$(INSTALL) -m755  java.csh.$(OS) $(ROOT)/etc/profile.d/java.csh
 
+clean::
+	rm -f $(NAME).spec.in

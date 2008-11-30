@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2008/10/18 00:56:11 mjk Exp $
+# $Id: Makefile,v 1.5 2008/11/30 19:38:40 anoop Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.5  2008/11/30 19:38:40  anoop
+# *** empty log message ***
+#
 # Revision 1.4  2008/10/18 00:56:11  mjk
 # copyright 5.1
 #
@@ -83,8 +86,8 @@
 # various java-based tools
 #
 
-PKGROOT		= /usr/java
-REDHAT.ROOT	= $(PWD)/../../
+REDHAT.ROOT	= $(CURDIR)/../../
+ROCKSROOT	= ../../../../..
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 -include ../../java-version.mk
@@ -93,20 +96,20 @@ include java-version.mk
 install::
 	mkdir -p $(ROOT)/$(JAVA_LIBEXT)
 	mkdir -p $(ROOT)/$(JAVA_LIBARCH)
-	install -m444 gluegen/build/*.jar    $(ROOT)/$(JAVA_LIBEXT)/
-	install -m555 gluegen/build/obj/*.so $(ROOT)/$(JAVA_LIBARCH)/
-	install -m444 jogl/build/*.jar       $(ROOT)/$(JAVA_LIBEXT)/
-	install -m555 jogl/build/obj/*.so    $(ROOT)/$(JAVA_LIBARCH)/
+	$(INSTALL) -m444 gluegen/build/*.jar    $(ROOT)/$(JAVA_LIBEXT)/
+	$(INSTALL) -m555 gluegen/build/obj/*.so $(ROOT)/$(JAVA_LIBARCH)/
+	$(INSTALL) -m444 jogl/build/*.jar       $(ROOT)/$(JAVA_LIBEXT)/
+	$(INSTALL) -m555 jogl/build/obj/*.so    $(ROOT)/$(JAVA_LIBARCH)/
 
 build: 
 	unzip $(NAME)-$(VERSION)-src.zip
 	(								\
 		cd gluegen/make;					\
-		ant -Dantlr.jar=$(JAVA_LIBEXT)/antlr-3.0.jar;		\
+		/opt/rocks/bin/ant -Dantlr.jar=$(JAVA_LIBEXT)/antlr-3.1.jar;		\
 	)
 	(								\
 		cd jogl/make;						\
-		ant -Dantlr.jar=$(JAVA_LIBEXT)/antlr-3.0.jar; 		\
+		/opt/rocks/bin/ant -Dantlr.jar=$(JAVA_LIBEXT)/antlr-3.1.jar; 		\
 	)
 
 clean::

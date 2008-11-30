@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.7 2008/10/18 00:56:11 mjk Exp $
+# $Id: Makefile,v 1.8 2008/11/30 19:38:40 anoop Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.8  2008/11/30 19:38:40  anoop
+# *** empty log message ***
+#
 # Revision 1.7  2008/10/18 00:56:11  mjk
 # copyright 5.1
 #
@@ -92,26 +95,33 @@
 
 PKGROOT = /opt/jboss
 
-REDHAT.ROOT = $(PWD)/../../
+REDHAT.ROOT = $(CURDIR)/../../
+ROCKSROOT   = ../../../../..
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)/LOGS
 	mkdir -p $(ROOT)/etc/profile.d
-	mkdir -p $(ROOT)/etc/rc.d/init.d
+	mkdir -p $(ROOT)/$(INIT_SCRIPTS_DIR)
 	chmod 1777 $(ROOT)/$(PKGROOT)/LOGS
-	install -m744 jboss.rc $(ROOT)/etc/rc.d/init.d/jboss
-	install -m444 jboss.sh $(ROOT)/etc/profile.d/
-	install -m444 jboss.csh $(ROOT)/etc/profile.d/
-	install -m755 jboss $(ROOT)/$(PKGROOT)/
-	cat $(NAME)-$(VERSION).tar.gz | (cd $(ROOT)/$(PKGROOT); tar -xzf -)
-	mv $(ROOT)/$(PKGROOT)/$(NAME)-$(VERSION)/* $(ROOT)/$(PKGROOT)/
-	chown -R jboss.jboss $(ROOT)/$(PKGROOT)
+	$(INSTALL) -m744 jboss.rc $(ROOT)/$(INIT_SCRIPTS_DIR)/jboss
+	$(INSTALL) -m444 jboss.sh $(ROOT)/etc/profile.d/
+	$(INSTALL) -m444 jboss.csh $(ROOT)/etc/profile.d/
+	$(INSTALL) -m755 jboss $(ROOT)/$(PKGROOT)/
+	mv $(NAME)-$(VERSION)-src/build/output/$(NAME)-$(VERSION)/* \
+			$(ROOT)/$(PKGROOT)/
+	chown -R jboss:jboss $(ROOT)/$(PKGROOT)
 
 build: 
-
+	gunzip -c $(NAME)-$(VERSION)-src.tar.gz | $(TAR) -xf -
+	(\
+		cd $(NAME)-$(VERSION)-src/build;\
+		/opt/rocks/bin/ant main;	\
+		/opt/rocks/bin/ant release;	\
+	)
 
 clean::
+	rm -rf $(NAME)-$(VERSION)-src
 	rm -rf $(NAME).spec.in
 	
