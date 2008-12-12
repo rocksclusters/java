@@ -14,6 +14,9 @@
 
 	<changelog>
 	$Log: java-base.xml,v $
+	Revision 1.11  2008/12/12 02:41:31  anoop
+	jdk 1.5 doesn't exist anymore
+	
 	Revision 1.10  2008/10/18 00:56:10  mjk
 	copyright 5.1
 	
@@ -154,9 +157,6 @@ rm -f /usr/bin/java
 <file name="/etc/man.config" mode="append">
 MANPATH /usr/java/jdk1.5/man
 </file>
-
-<!-- /usr/java/jdk1.5 is always the installed version -->
-ln -s /usr/java/jdk1.5.0_10 /usr/java/jdk1.5
 
 <!-- configure mod_jk -->
 
