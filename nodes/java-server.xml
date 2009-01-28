@@ -1,6 +1,6 @@
 <?xml version="1.0" standalone="no"?>
 
-<kickstart>
+<kickstart interface="public">
 
 
 	<description>
@@ -14,6 +14,10 @@
 
 	<changelog>
 	$Log: java-server.xml,v $
+	Revision 1.5  2009/01/28 20:45:52  mjk
+	- make node files "public"
+	- added glew to bootstap
+	
 	Revision 1.4  2008/10/18 00:56:10  mjk
 	copyright 5.1
 	
