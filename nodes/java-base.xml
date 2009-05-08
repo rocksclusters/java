@@ -15,6 +15,9 @@
 
 	<changelog>
 	$Log: java-base.xml,v $
+	Revision 1.14  2009/05/08 22:22:44  anoop
+	differentiate b/w linux and solaris packages and post sections
+	
 	Revision 1.13  2009/05/01 19:07:19  mjk
 	chimi con queso
 	
@@ -136,17 +139,28 @@
 	
 	</changelog>
 
-	<package>jdk</package>
-	<package>antlr</package>
-	<package>jogl</package>
-	<package>java3d</package>
-	<package>rocks-java</package>
-	<package>jboss</package>
-	<package>apache-tomcat</package>
-	<package>tomcat-connectors</package>
+	<package os="linux">jdk</package>
+	<package os="linux">antlr</package>
+	<package os="linux">jogl</package>
+	<package os="linux">java3d</package>
+	<package os="linux">rocks-java</package>
+	<package os="linux">jboss</package>
+	<package os="linux">apache-tomcat</package>
+	<package os="linux">tomcat-connectors</package>
 
+	<package os="sunos">SUNWj6cfg</package>
+	<package os="sunos">SUNWj6dev</package>
+	<package os="sunos">SUNWj6dvx</package>
+	<package os="sunos">SUNWj6man</package>
+	<package os="sunos">SUNWj6rt</package>
+	<package os="sunos">SUNWj6rtx</package>
+	<package os="sunos">SUNWjavadb-client</package>
+	<package os="sunos">SUNWjavadb-common</package>
+	<package os="sunos">SUNWjavadb-core</package>
+	<package os="sunos">ROCKSantlr</package>
+	<package os="sunos">ROCKSrocks-java</package>
 
-<post>
+<post os="linux">
 
 /usr/sbin/useradd -M -u405 -c "JBoss" -d /opt/jboss jboss
 /usr/sbin/useradd -M -u412 -c "Tomcat" -d /opt/tomcat tomcat
@@ -194,6 +208,6 @@ workers.java_home=/usr/java/jdk1.5
 ps=/
 </file>
 
-
 </post>
+
 </kickstart>
