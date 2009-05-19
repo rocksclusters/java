@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.13 2009/05/01 19:07:20 mjk Exp $
+# $Id: Makefile,v 1.14 2009/05/19 21:16:28 anoop Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.14  2009/05/19 21:16:28  anoop
+# Does not build without explicit JAVA_HOME setting
+#
 # Revision 1.13  2009/05/01 19:07:20  mjk
 # chimi con queso
 #
@@ -100,6 +103,9 @@ PKGROOT = /opt/tomcat
 REDHAT.ROOT = $(PWD)/../../
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
+
+-include ../../java-version.mk
+include java-version.mk
 
 install:: install_6_0 install_5_5 install_5_0
 	mkdir -p $(ROOT)/etc/rc.d/init.d
@@ -155,7 +161,7 @@ build_6_0:
 	(								\
 		cd $(NAME_6_0)-$(VERSION_6_0)/bin/jsvc-src;		\
 		autoconf -f;						\
-		sh ./configure;						\
+		sh ./configure --with-java=$(JAVA_HOME);		\
 		make;							\
 		cp jsvc ..;						\
 	)
@@ -169,7 +175,7 @@ build_5_5:
 	(								\
 		cd $(NAME_5_5)-$(VERSION_5_5)/bin/jsvc-src;		\
 		autoconf -f;						\
-		sh ./configure;						\
+		sh ./configure --with-java=$(JAVA_HOME);		\
 		make;							\
 		cp jsvc ..;						\
 	)
@@ -184,7 +190,7 @@ build_5_0:
 	(								\
 		cd $(NAME_5_0)-$(VERSION_5_0)/bin/jsvc-src;		\
 		autoconf -f;						\
-		sh ./configure;						\
+		sh ./configure --with-java=$(JAVA_HOME);		\
 		make;							\
 		cp jsvc ..;						\
 	)
