@@ -1,4 +1,4 @@
-# $Id: java-version.mk,v 1.7 2009/05/01 19:07:19 mjk Exp $
+# $Id: java-version.mk,v 1.8 2009/05/19 19:40:40 anoop Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: java-version.mk,v $
+# Revision 1.8  2009/05/19 19:40:40  anoop
+# Upgraded Solaris Java to Java 6 update 13
+#
 # Revision 1.7  2009/05/01 19:07:19  mjk
 # chimi con queso
 #
@@ -89,7 +92,7 @@ JAVA_HOME	= /usr/java/jdk$(JAVA_VERSION)
 endif
 
 ifdef __RULES_SUNOS_MK
-JAVA_VERSION	= 1.6.0_07
+JAVA_VERSION	= 1.6.0_13
 JAVA_HOME	= /usr/jdk/instances/jdk1.6.0
 endif
 

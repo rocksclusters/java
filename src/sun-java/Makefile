@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.4 2009/05/01 19:07:20 mjk Exp $
+# $Id: Makefile,v 1.5 2009/05/19 19:40:41 anoop Exp $
 # 
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.5  2009/05/19 19:40:41  anoop
+# Upgraded Solaris Java to Java 6 update 13
+#
 # Revision 1.4  2009/05/01 19:07:20  mjk
 # chimi con queso
 #
@@ -73,15 +76,14 @@ REDHAT.ROOT	= $(CURDIR)/../..
 include Rules.mk
 
 pkg:
-	zcat $(X86_TARBALL) | $(TAR) -xf -
-	zcat $(X64_TARBALL) | $(TAR) -xf -
-	pkgtrans -o . $(REDHAT.ROOT)/PKGS/ SUNW*
+	mkdir -p tmp
+	zcat $(X86_TARBALL) | (cd tmp && $(TAR) -xf -)
+	zcat $(X64_TARBALL) | (cd tmp && $(TAR) -xf -)
+	pkgtrans -o tmp $(REDHAT.ROOT)/PKGS/ all
 
 build:
 
 install::
 
 clean::
-	rm -rf COPYRIGHT LICENSE \
-	README* SUNWj* \
-	THIRDPARTYLICENSEREADME.txt
+	rm -rf tmp
