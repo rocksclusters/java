@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.6 2009/05/01 19:07:19 mjk Exp $
+# $Id: Makefile,v 1.7 2009/05/19 21:18:55 anoop Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,11 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.7  2009/05/19 21:18:55  anoop
+# Upgraded JOGL to latest stable version.
+# Patched JOGL build.xml file to point to
+# correct X11 libraries and include files.
+#
 # Revision 1.6  2009/05/01 19:07:19  mjk
 # chimi con queso
 #
@@ -106,15 +111,20 @@ install::
 
 build: 
 	unzip $(NAME)-$(VERSION)-src.zip
-	(								\
-		cd gluegen/make;					\
-		/opt/rocks/bin/ant -Dantlr.jar=$(JAVA_LIBEXT)/antlr-3.1.jar;		\
+	(							 \
+		cd gluegen/make;				 \
+		/opt/rocks/bin/ant				 \
+			-Dantlr.jar=$(JAVA_LIBEXT)/antlr-3.1.jar;\
 	)
-	(								\
-		cd jogl/make;						\
-		/opt/rocks/bin/ant -Dantlr.jar=$(JAVA_LIBEXT)/antlr-3.1.jar; 		\
+	-(cd patch-files && find . -type f | cpio -pudv ../)
+	(							 \
+		cd jogl/make;					 \
+		/opt/rocks/bin/ant				 \
+			-Dantlr.jar=$(JAVA_LIBEXT)/antlr-3.1.jar \
+                        -Dcompiler.cfg.freebsd.jogl=/usr/include \
+                        -Dlinker.cfg.linux.jogl=/usr/lib	 \
+                        -Dlinker.cfg.linux.amd64.jogl=/usr/lib64;\
 	)
-
+ 
 clean::
 	rm -rf $(NAME) gluegen
-	
