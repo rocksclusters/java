@@ -1,12 +1,12 @@
-# $Id: Makefile,v 1.14 2009/05/19 21:16:28 anoop Exp $
+# $Id: Makefile,v 1.15 2010/09/07 23:53:22 bruno Exp $
 #
 # @Copyright@
 # 
 # 				Rocks(r)
 # 		         www.rocksclusters.org
-# 		       version 5.2 (Chimichanga)
+# 		         version 5.4 (Maverick)
 # 
-# Copyright (c) 2000 - 2009 The Regents of the University of California.
+# Copyright (c) 2000 - 2010 The Regents of the University of California.
 # All rights reserved.	
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.15  2010/09/07 23:53:22  bruno
+# star power for gb
+#
 # Revision 1.14  2009/05/19 21:16:28  anoop
 # Does not build without explicit JAVA_HOME setting
 #
