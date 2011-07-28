@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.8 2011/07/23 02:31:12 phil Exp $
+# $Id: Makefile,v 1.9 2011/07/28 21:40:37 phil Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.9  2011/07/28 21:40:37  phil
+# Generate an explicit files list without upper directories. Tomcat-connectors and apache both believe they owne /etc/httpd/modules. Apache package owns the directory, not this package
+#
 # Revision 1.8  2011/07/23 02:31:12  phil
 # Viper Copyright
 #
@@ -102,6 +105,12 @@ install::
 		cd $(NAME)-$(VERSION)-src;				\
 		install -m755 native/apache-2.0/*.so			\
 			$(ROOT)/etc/httpd/modules/;			\
+	)
+	( 								\
+	  if [ -f package-files ]; then /bin/rm package-files; fi;      \
+	  for file in `find $(ROOT)/etc/httpd/modules |                 \
+			/bin/sed '1d' | /bin/sed 's#$(ROOT)##'`;        \
+	  	do echo "$$file" >> package-files; done                 \
 	)
 
 build: 
