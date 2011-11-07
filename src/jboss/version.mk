@@ -1,3 +1,5 @@
 NAME    = jboss
-VERSION = 5.0.1.GA
+VERSION = 6.1.0
+FINAL = Final
+FINAL-SRC = $(FINAL)-src
 RELEASE = 0

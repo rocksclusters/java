@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.11 2011/07/23 02:31:12 phil Exp $
+# $Id: Makefile,v 1.12 2011/11/07 06:35:13 phil Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,10 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.12  2011/11/07 06:35:13  phil
+# New version of JBOSS. Older 5.x series no longer builds because jboss.org
+# has removed online files used in the build process
+#
 # Revision 1.11  2011/07/23 02:31:12  phil
 # Viper Copyright
 #
@@ -105,7 +109,6 @@
 PKGROOT = /opt/jboss
 
 REDHAT.ROOT = $(CURDIR)/../../
-ROCKSROOT   = ../../../../..
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 
@@ -118,19 +121,19 @@ install::
 	$(INSTALL) -m444 jboss.sh $(ROOT)/etc/profile.d/
 	$(INSTALL) -m444 jboss.csh $(ROOT)/etc/profile.d/
 	$(INSTALL) -m755 jboss $(ROOT)/$(PKGROOT)/
-	mv $(NAME)-$(VERSION)-src/build/output/$(NAME)-$(VERSION)/* \
+	mv $(NAME)-$(VERSION).$(FINAL-SRC)/build/target/$(NAME)-$(VERSION).$(FINAL)/* \
 			$(ROOT)/$(PKGROOT)/
 	chown -R jboss:jboss $(ROOT)/$(PKGROOT)
 
 build: 
-	gunzip -c $(NAME)-$(VERSION)-src.tar.gz | $(TAR) -xf -
+	gunzip -c $(NAME)-$(VERSION).$(FINAL-SRC).tar.gz | $(TAR) -xf -
 	(\
-		cd $(NAME)-$(VERSION)-src/build;\
-		/opt/rocks/bin/ant main;	\
-		/opt/rocks/bin/ant release;	\
+		. /etc/profile.d/java.sh; \
+		cd $(NAME)-$(VERSION).$(FINAL-SRC);\
+		/bin/sh build.sh	\
 	)
 
 clean::
-	rm -rf $(NAME)-$(VERSION)-src
+	rm -rf $(NAME)-$(VERSION).$(FINAL-SRC)
 	rm -rf $(NAME).spec.in
 	
