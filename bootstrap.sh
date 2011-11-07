@@ -2,7 +2,7 @@
 #
 # This file should remain OS independent
 #
-# $Id: bootstrap.sh,v 1.7 2011/07/23 02:31:07 phil Exp $
+# $Id: bootstrap.sh,v 1.8 2011/11/07 06:37:52 phil Exp $
 #
 # @Copyright@
 # 
@@ -58,6 +58,9 @@
 # @Copyright@
 #
 # $Log: bootstrap.sh,v $
+# Revision 1.8  2011/11/07 06:37:52  phil
+# add the jboss user and group.  Install the java profile.d files so that subordinate SW will build.
+#
 # Revision 1.7  2011/07/23 02:31:07  phil
 # Viper Copyright
 #
@@ -92,3 +95,10 @@ compile RPMS
 install jdk
 
 compile_and_install antlr
+# poorly named: profiles
+compile rocks
+install rocks-java
+
+/usr/sbin/groupadd -g 405 jboss
+/usr/sbin/useradd -u 405 -g 405 -d /opt/jboss jboss
+
