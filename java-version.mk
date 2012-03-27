@@ -1,4 +1,4 @@
-# $Id: java-version.mk,v 1.11 2011/07/23 02:31:07 phil Exp $
+# $Id: java-version.mk,v 1.12 2012/03/27 19:52:50 phil Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,9 @@
 # @Copyright@
 #
 # $Log: java-version.mk,v $
+# Revision 1.12  2012/03/27 19:52:50  phil
+# use latest version
+#
 # Revision 1.11  2011/07/23 02:31:07  phil
 # Viper Copyright
 #
@@ -96,8 +99,7 @@ __JAVA_VERSION_MK = yes
 
 
 ifdef __RULES_LINUX_MK
-JAVA_VERSION	= 1.6.0_13
-JAVA_HOME	= /usr/java/jdk$(JAVA_VERSION)
+JAVA_HOME	= /usr/java/latest
 endif
 
 ifdef __RULES_SUNOS_MK
