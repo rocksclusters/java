@@ -15,6 +15,9 @@
 
 	<changelog>
 	$Log: java-base.xml,v $
+	Revision 1.17  2012/04/12 05:16:46  phil
+	move rocks-java to base roll
+	
 	Revision 1.16  2011/07/23 02:31:07  phil
 	Viper Copyright
 	
@@ -149,7 +152,6 @@
 	<package os="linux">antlr</package>
 	<package os="linux">jogl</package>
 	<package os="linux">java3d</package>
-	<package os="linux">rocks-java</package>
 	<package os="linux">jboss</package>
 	<package os="linux">apache-tomcat</package>
 	<package os="linux">tomcat-connectors</package>
@@ -164,7 +166,6 @@
 	<package os="sunos">SUNWjavadb-common</package>
 	<package os="sunos">SUNWjavadb-core</package>
 	<package os="sunos">ROCKSantlr</package>
-	<package os="sunos">ROCKSrocks-java</package>
 
 <post os="linux">
 

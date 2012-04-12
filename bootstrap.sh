@@ -2,7 +2,7 @@
 #
 # This file should remain OS independent
 #
-# $Id: bootstrap.sh,v 1.8 2011/11/07 06:37:52 phil Exp $
+# $Id: bootstrap.sh,v 1.9 2012/04/12 05:16:46 phil Exp $
 #
 # @Copyright@
 # 
@@ -58,6 +58,9 @@
 # @Copyright@
 #
 # $Log: bootstrap.sh,v $
+# Revision 1.9  2012/04/12 05:16:46  phil
+# move rocks-java to base roll
+#
 # Revision 1.8  2011/11/07 06:37:52  phil
 # add the jboss user and group.  Install the java profile.d files so that subordinate SW will build.
 #
@@ -91,13 +94,7 @@
 
 install_os_packages java-server
 
-compile RPMS
-install jdk
-
 compile_and_install antlr
-# poorly named: profiles
-compile rocks
-install rocks-java
 
 /usr/sbin/groupadd -g 405 jboss
 /usr/sbin/useradd -u 405 -g 405 -d /opt/jboss jboss
