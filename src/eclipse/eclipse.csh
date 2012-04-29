@@ -1,5 +1,5 @@
 #
-# $Id: eclipse.csh,v 1.9 2011/07/23 02:31:09 phil Exp $
+# $Id: eclipse.csh,v 1.10 2012/04/29 21:50:46 phil Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: eclipse.csh,v $
+# Revision 1.10  2012/04/29 21:50:46  phil
+# Only add to path if not already in path
+#
 # Revision 1.9  2011/07/23 02:31:09  phil
 # Viper Copyright
 #
@@ -85,5 +88,12 @@
 #
 
 setenv ECLIPSE_HOME /opt/eclipse
-set path=( $path $ECLIPSE_HOME )
+set BIN=${ECLIPSE_HOME}
+
+if ( -d ${BIN}  ) then
+	echo ${PATH} | /bin/grep -q ${BIN} 
+	if ( $? != 0) then
+        	setenv PATH "${PATH}:${BIN}"
+	endif
+endif
 

@@ -1,5 +1,5 @@
 #
-# $Id: eclipse.sh,v 1.9 2011/07/23 02:31:09 phil Exp $
+# $Id: eclipse.sh,v 1.10 2012/04/29 21:50:46 phil Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: eclipse.sh,v $
+# Revision 1.10  2012/04/29 21:50:46  phil
+# Only add to path if not already in path
+#
 # Revision 1.9  2011/07/23 02:31:09  phil
 # Viper Copyright
 #
@@ -85,5 +88,11 @@
 #
 
 export ECLIPSE_HOME=/opt/eclipse
-export PATH=${PATH}:${ECLIPSE_HOME}
+BIN=${ECLIPSE_HOME}
+
+if [ -d ${BIN} ]; then
+	if ! echo ${PATH} | /bin/grep -q ${BIN} ; then
+        	export PATH=$PATH:$BIN
+	fi
+fi
 
