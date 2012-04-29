@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.10 2011/07/23 02:31:09 phil Exp $
+# $Id: Makefile,v 1.11 2012/04/29 02:15:15 phil Exp $
 #
 # @Copyright@
 # 
@@ -54,6 +54,10 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.11  2012/04/29 02:15:15  phil
+#
+# Updated to latest eclipse 3
+#
 # Revision 1.10  2011/07/23 02:31:09  phil
 # Viper Copyright
 #
@@ -93,6 +97,12 @@ REDHAT.ROOT	= $(PWD)/../../
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 
+ifeq ($(ARCH),x86_64)
+ARCHEXT = -x86_64
+else
+ARCHEXT =
+endif
+
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)
 	mkdir -p $(ROOT)/etc/profile.d
@@ -104,7 +114,7 @@ install::
 	install -m444 $(NAME).csh	$(ROOT)/etc/profile.d
 
 build: 
-	gunzip -c $(NAME)-SDK-$(VERSION)-linux-gtk.tar.gz | tar -x
+	gunzip -c $(NAME)-SDK-$(VERSION)-linux-gtk$(ARCHEXT).tar.gz | tar -x
 
 clean::
 	rm -rf $(NAME)
