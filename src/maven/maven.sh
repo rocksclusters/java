@@ -1,5 +1,5 @@
 #
-# $Id: maven.sh,v 1.9 2011/07/23 02:31:12 phil Exp $
+# $Id: maven.sh,v 1.10 2012/04/29 21:55:27 phil Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: maven.sh,v $
+# Revision 1.10  2012/04/29 21:55:27  phil
+# Only extend path if not already in path
+#
 # Revision 1.9  2011/07/23 02:31:12  phil
 # Viper Copyright
 #
@@ -84,5 +87,12 @@
 #
 
 export MAVEN_HOME=/opt/maven
-export PATH=${PATH}:${MAVEN_HOME}/bin
+
+BIN=$MAVEN_HOME/bin
+
+if [ -d ${BIN} ]; then
+	if ! echo ${PATH} | /bin/grep -q ${BIN} ; then
+        	export PATH=${PATH}:${BIN}
+	fi
+fi
 

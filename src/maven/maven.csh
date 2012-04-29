@@ -1,5 +1,5 @@
 #
-# $Id: maven.csh,v 1.9 2011/07/23 02:31:12 phil Exp $
+# $Id: maven.csh,v 1.10 2012/04/29 21:55:27 phil Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: maven.csh,v $
+# Revision 1.10  2012/04/29 21:55:27  phil
+# Only extend path if not already in path
+#
 # Revision 1.9  2011/07/23 02:31:12  phil
 # Viper Copyright
 #
@@ -84,5 +87,11 @@
 #
 
 setenv MAVEN_HOME /opt/maven
-set path=( $path $MAVEN_HOME/bin )
+set BIN=${MAVEN_HOME}/bin
 
+if ( -d ${BIN}  ) then
+	echo ${PATH} | /bin/grep -q ${BIN} 
+	if ( $? != 0) then
+        	setenv PATH "${PATH}:${BIN}"
+	endif
+endif
