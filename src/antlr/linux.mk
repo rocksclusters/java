@@ -1,4 +1,4 @@
-# $Id: linux.mk,v 1.6 2012/05/06 05:49:11 phil Exp $
+# $Id: linux.mk,v 1.7 2012/05/07 23:01:41 phil Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,10 @@
 # @Copyright@
 #
 # $Log: linux.mk,v $
+# Revision 1.7  2012/05/07 23:01:41  phil
+# explicitly require jdk.  /usr/java/latest needs to exist and is created
+# by Oracle's jdk rpm.
+#
 # Revision 1.6  2012/05/06 05:49:11  phil
 # Copyright Storm for Mamba
 #
@@ -73,6 +77,7 @@
 # Revision 1.1  2008/09/12 19:04:12  anoop
 # Made the java roll more solaris friendly
 #
+RPM.REQUIRES = jdk
 install::
 	mkdir -p $(ROOT)/$(JAVA_LIBEXT)
 	install -m444 $(NAME)-$(VERSION)/lib/*.jar $(ROOT)/$(JAVA_LIBEXT)/

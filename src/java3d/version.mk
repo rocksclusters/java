@@ -1,3 +1,4 @@
 NAME = java3d
 RELEASE = 0
 VERSION = 1.5.1
+RPM.REQUIRES = jdk
