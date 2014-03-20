@@ -112,7 +112,7 @@ install::
 	install -m444 maven.csh		$(ROOT)/etc/profile.d
 
 build: 
-	gunzip -c $(NAME)-$(VERSION).tar.gz | tar -x
+	gunzip -c $(NAME)-$(VERSION)-bin.tar.gz | tar -x
 
 clean::
 	rm -rf $(NAME)-$(VERSION)

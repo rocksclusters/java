@@ -122,7 +122,7 @@
 	</changelog>
 
 	<package>cruisecontrol</package>
-	<package>maven</package>
+	<package>apache-maven</package>
 	<package>eclipse</package>
 
 </kickstart>

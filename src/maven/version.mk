@@ -1,3 +1,3 @@
-NAME = maven
+NAME = apache-maven
 RELEASE = 0
-VERSION = 1.0.2
+VERSION = 3.2.1
