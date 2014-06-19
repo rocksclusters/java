@@ -1,0 +1,53 @@
+
+# build directory
+BUILD/
+RPMS/
+SOURCES/
+SPECS/
+
+
+*.pyc
+
+_os
+_arch
+_distribution
+
+# ignore version.mk
+rocks-version.mk
+rocks-version-common.mk
+
+# ignore python.mk
+python.mk
+
+# ignore Rules files
+Rules-install.mk
+Rules-linux-centos.mk
+Rules-linux.mk
+Rules-rcfiles.mk
+Rules-scripts.mk
+Rules.mk
+Rolls.mk
+
+# --- BEGIN --- binaries files
+src/antlr/antlr-3.0.tar.gz
+src/antlr/antlr-3.1.tar.gz
+src/eclipse/eclipse-SDK-3.7.2-linux-gtk.tar.gz
+src/eclipse/eclipse-SDK-3.7.2-linux-gtk-x86_64.tar.gz
+src/java3d/java3d-1_5_1-pre7-0707110159-linux-i586.zip
+src/java3d/java3d-1_5_1-pre7-0707110202-linux-amd64.zip
+src/jboss/jboss-6.1.0.Final-src.tar.gz
+src/jogl/jogl-1.1.1-src.zip
+src/maven/apache-maven-3.2.1-bin.tar.gz
+src/RPMS/sun-javadb-client-10.6.2-1.1.i386.rpm
+src/RPMS/sun-javadb-common-10.6.2-1.1.i386.rpm
+src/RPMS/sun-javadb-core-10.6.2-1.1.i386.rpm
+src/RPMS/sun-javadb-demo-10.6.2-1.1.i386.rpm
+src/RPMS/sun-javadb-docs-10.6.2-1.1.i386.rpm
+src/RPMS/sun-javadb-javadoc-10.6.2-1.1.i386.rpm
+src/sun-java/jdk-6u27-solaris-i586.tar.Z
+src/sun-java/jdk-6u27-solaris-x64.tar.Z
+src/tomcat/apache-tomcat-5.5.17.tar.gz
+src/tomcat/apache-tomcat-6.0.14.tar.gz
+src/tomcat-connectors/tomcat-connectors-1.2.20-src.tar.gz
+src/tomcat/jakarta-tomcat-5.0.30.tar.gz
+# --- END ---
