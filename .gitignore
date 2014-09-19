@@ -33,6 +33,7 @@ src/antlr/antlr-3.0.tar.gz
 src/antlr/antlr-3.1.tar.gz
 src/eclipse/eclipse-SDK-3.7.2-linux-gtk.tar.gz
 src/eclipse/eclipse-SDK-3.7.2-linux-gtk-x86_64.tar.gz
+src/eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz
 src/java3d/java3d-1_5_1-pre7-0707110159-linux-i586.zip
 src/java3d/java3d-1_5_1-pre7-0707110202-linux-amd64.zip
 src/jboss/jboss-6.1.0.Final-src.tar.gz

@@ -121,7 +121,7 @@ install::
 	install -m444 $(NAME).csh	$(ROOT)/etc/profile.d
 
 build: 
-	gunzip -c $(NAME)-SDK-$(VERSION)-linux-gtk$(ARCHEXT).tar.gz | tar -x
+	gunzip -c $(NAME)-$(ECLIPSE_RELEASE)-linux-gtk-$(ECLIPSE_ARCH).tar.gz | tar -x
 
 clean::
 	rm -rf $(NAME)

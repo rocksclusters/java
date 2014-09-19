@@ -1,3 +1,5 @@
 NAME = eclipse
 RELEASE = 0
-VERSION = 3.7.2
+VERSION = 4.4.0
+ECLIPSE_RELEASE = standard-luna-R
+ECLIPSE_ARCH = x86_64
