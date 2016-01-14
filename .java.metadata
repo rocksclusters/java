@@ -1,6 +1,6 @@
 0d875df270d55e43e5f6c930f5e0d9c6cfaa32e5  src/antlr/antlr-3.0.tar.gz
 e00d487a2242a71d40f9fe83b271081392640b79  src/antlr/antlr-3.1.tar.gz
-536af0332c794aa9de0531f611eb96fb7c4467ff  src/eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz
+536af0332c794aa9de0531f611eb96fb7c4467ff  src/eclipse/eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz
 29b62e0221fe376b33d26a763ddba9b8df7b5dbc  src/java3d/java3d-1_5_1-pre7-0707110159-linux-i586.zip
 ae8d89c818f8267aed2ed9f6c9d4726ace488a8b  src/java3d/java3d-1_5_1-pre7-0707110202-linux-amd64.zip
 baeb1ff05b4a03dfac8293cc9e720eaca442c421  src/jboss/jboss-6.1.0.Final-src.tar.gz
